@@ -1,0 +1,25 @@
+/* AQ Record — Brand Design Tokens */
+/* Primary: Electric Blue, Tech Minimal Style */
+
+:root {
+  --aq-background: #0B0F1A;
+  --aq-foreground: #E8ECF4;
+  --aq-card: #131827;
+  --aq-card-foreground: #E8ECF4;
+  --aq-popover: #1A2035;
+  --aq-popover-foreground: #E8ECF4;
+  --aq-primary: #3B82F6;
+  --aq-primary-foreground: #FFFFFF;
+  --aq-muted: #64748B;
+  --aq-muted-foreground: #94A3B8;
+  --aq-border: #1E293B;
+  --aq-input: #1E293B;
+  --aq-ring: #3B82F6;
+  --aq-radius-sm: 6px;
+  --aq-radius-md: 10px;
+  --aq-radius-lg: 16px;
+  --aq-state-success: #10B981;
+  --aq-state-warning: #F59E0B;
+  --aq-state-error: #EF4444;
+  --aq-state-info: #3B82F6;
+}

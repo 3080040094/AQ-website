@@ -1,0 +1,138 @@
+{
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.07.06.8",
+    "version_source": "skill-version.json",
+    "runtime_skill_dir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+    "recorded_at": "2026-07-21T08:10:00.000Z"
+  },
+  "project": {
+    "name": "AQ录制",
+    "path": "d:\\aq-website\\aq-record",
+    "operation": "create",
+    "deviceType": "desktop",
+    "language": "zh-CN",
+    "dashboardMode": false,
+    "intentProfile": {
+      "caseFamily": "free_exploration",
+      "graphicStrategy": null,
+      "sourceType": null,
+      "routingReason": "New website design for AQ screen recording software, no restoration target, no active Design Library"
+    },
+    "replicationMode": null,
+    "sourceUrl": null,
+    "contextReadBudget": {
+      "workflowFileReadLimit": 1,
+      "largeWorkflowFilesCachedInSummary": [],
+      "restoreInputsCached": [],
+      "subAgentReadsFullSummary": false
+    },
+    "readBudgetLedger": [],
+    "dispatchPreflightManifest": [],
+    "cssPreflightEvidence": {
+      "applies": true,
+      "status": "passed",
+      "command": "node c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\script\\fill-html-head.mjs d:\\aq-website\\aq-record\\colors_and_type.css d:\\aq-website\\aq-record\\.preflight\\preflight.html --title=\"Preflight\" --lang=zh-CN --prefix=aq",
+      "brandPrefix": "aq",
+      "checks": {
+        "themeVars": "present",
+        "semanticTokenFallback": "present",
+        "themeInline": "present",
+        "tailwindCdn": "present",
+        "htmlClass": "present",
+        "semanticMappings": "resolved"
+      },
+      "retryCount": 0,
+      "blockingReason": null
+    },
+    "repairEntryEvidence": [],
+    "finishReadinessEvidence": null,
+    "styleDefinitionBrief": "Dark tech-minimal with electric blue accent, professional screen recording software",
+    "designRead": "landing / tech-savvy users / clean powerful / balanced / avoid cluttered layouts",
+    "designDials": {
+      "layoutVariance": 3,
+      "motionIntensity": 2,
+      "visualDensity": 3
+    },
+    "styleContinuityAnchors": null,
+    "sharedProjectShellContract": null,
+    "generationTree": null
+  },
+  "designSource": {
+    "operatingMode": "free-explore",
+    "libraryIdentity": null,
+    "libraryPath": null,
+    "cssFilePath": "d:\\aq-website\\aq-record\\colors_and_type.css",
+    "brandPrefix": "aq",
+    "themeMode": "dark",
+    "designDecisionSummary": "Dark background (#0B0F1A) with electric blue (#3B82F6) accent, modern sans-serif, clean card surfaces",
+    "componentContractKind": null,
+    "forbiddenInventedComponents": [],
+    "allowedComponents": [],
+    "styleConstraints": {
+      "radiusMax": 16,
+      "spacingBase": 4,
+      "fontSizeBody": 14,
+      "fontSizeMin": 12,
+      "controlHeightDefault": 36,
+      "controlHeightLarge": 44
+    },
+    "productContext": {
+      "kitType": "free-explore",
+      "productType": "screen recording software"
+    },
+    "actualTokenNameReference": [
+      { "semanticPurpose": "Primary background", "tokenName": "--aq-background" },
+      { "semanticPurpose": "Primary foreground text", "tokenName": "--aq-foreground" },
+      { "semanticPurpose": "Card surface", "tokenName": "--aq-card" },
+      { "semanticPurpose": "Primary brand color", "tokenName": "--aq-primary" },
+      { "semanticPurpose": "Border color", "tokenName": "--aq-border" },
+      { "semanticPurpose": "Muted text", "tokenName": "--aq-muted-foreground" }
+    ]
+  },
+  "pages": [
+    {
+      "nodeId": "page-index",
+      "slug": "index",
+      "title": "官网首页",
+      "htmlSrc": "pages/index.html",
+      "pageIndex": 1,
+      "pageType": "showcase",
+      "viewportMode": "document-scroll",
+      "businessScenario": "AQ录屏软件官网首页，展示产品核心功能，引导用户下载",
+      "visualNorthStar": "深色科技感，第一眼传达专业录屏工具的力量感与简洁",
+      "compositionPattern": "Hero-Center-Focus with feature grid below",
+      "continuityAnchors": ["dark card surface", "electric blue CTA", "rounded-lg cards"],
+      "imagePlan": ["hero-main.jpg"],
+      "chartsRequired": false,
+      "qualityRisks": []
+    },
+    {
+      "nodeId": "page-installer",
+      "slug": "installer",
+      "title": "安装包界面",
+      "htmlSrc": "pages/installer.html",
+      "pageIndex": 2,
+      "pageType": "information-dense",
+      "viewportMode": "document-scroll",
+      "businessScenario": "AQ录制EXE安装向导界面，包含欢迎、路径选择、安装进度、完成等步骤",
+      "visualNorthStar": "模拟Windows安装向导窗口，深色主题，步骤清晰专业",
+      "compositionPattern": "centered-window-mockup",
+      "continuityAnchors": ["dark card surface", "electric blue accent", "rounded-lg corners"],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "qualityRisks": []
+    }
+  ],
+  "assets": [
+    {
+      "filename": "hero-main.jpg",
+      "role": "critical-hero",
+      "owningPage": "index",
+      "semanticDescription": "AQ录制软件界面主视觉，展示录屏工具的深色科技风UI",
+      "status": "generating"
+    }
+  ],
+  "wiringPlan": [],
+  "hiddenInteractionPlan": []
+}

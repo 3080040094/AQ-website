@@ -1,0 +1,55 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "title": "官网首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784621600000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-installer",
+      "title": "安装包界面",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784621600000,
+      "canvasData": {
+        "x": 620,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/installer.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "image-001",
+      "title": "软件界面主视觉",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784621800000,
+      "canvasData": {
+        "x": 0,
+        "y": 1318
+      },
+      "devMetadata": {
+        "imageSrc": "assets/hero-main.jpg"
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "desktop",
+    "projectName": "AQ录制"
+  }
+}

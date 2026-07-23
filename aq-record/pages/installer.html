@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQ录制 - 安装向导</title>
+    <style id="theme-vars">
+/* AQ Record — Brand Design Tokens */
+/* Primary: Electric Blue, Tech Minimal Style */
+
+:root {
+  --aq-background: #0B0F1A;
+  --aq-foreground: #E8ECF4;
+  --aq-card: #131827;
+  --aq-card-foreground: #E8ECF4;
+  --aq-popover: #1A2035;
+  --aq-popover-foreground: #E8ECF4;
+  --aq-primary: #3B82F6;
+  --aq-primary-foreground: #FFFFFF;
+  --aq-muted: #64748B;
+  --aq-muted-foreground: #94A3B8;
+  --aq-border: #1E293B;
+  --aq-input: #1E293B;
+  --aq-ring: #3B82F6;
+  --aq-radius-sm: 6px;
+  --aq-radius-md: 10px;
+  --aq-radius-lg: 16px;
+  --aq-state-success: #10B981;
+  --aq-state-warning: #F59E0B;
+  --aq-state-error: #EF4444;
+  --aq-state-info: #3B82F6;
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--aq-background);
+    --color-foreground: var(--aq-foreground);
+    --color-card: var(--aq-card);
+    --color-card-foreground: var(--aq-card-foreground);
+    --color-popover: var(--aq-popover);
+    --color-popover-foreground: var(--aq-popover-foreground);
+    --color-primary: var(--aq-primary);
+    --color-primary-foreground: var(--aq-primary-foreground);
+    --color-muted: var(--aq-muted);
+    --color-muted-foreground: var(--aq-muted-foreground);
+    --color-border: var(--aq-border);
+    --color-input: var(--aq-input);
+    --color-ring: var(--aq-ring);
+    --radius-sm: var(--aq-radius-sm);
+    --radius-md: var(--aq-radius-md);
+    --radius-lg: var(--aq-radius-lg);
+  }
+  @layer base {
+    body { background: var(--aq-background); color: var(--aq-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--aq-background); }
+      .text-background { color: var(--aq-background); }
+      .border-background { border-color: var(--aq-background); }
+      .ring-background { --tw-ring-color: var(--aq-background); }
+      .bg-foreground { background-color: var(--aq-foreground); }
+      .text-foreground { color: var(--aq-foreground); }
+      .border-foreground { border-color: var(--aq-foreground); }
+      .ring-foreground { --tw-ring-color: var(--aq-foreground); }
+      .bg-card { background-color: var(--aq-card); }
+      .text-card { color: var(--aq-card); }
+      .border-card { border-color: var(--aq-card); }
+      .ring-card { --tw-ring-color: var(--aq-card); }
+      .bg-card-foreground { background-color: var(--aq-card-foreground); }
+      .text-card-foreground { color: var(--aq-card-foreground); }
+      .border-card-foreground { border-color: var(--aq-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--aq-card-foreground); }
+      .bg-popover { background-color: var(--aq-popover); }
+      .text-popover { color: var(--aq-popover); }
+      .border-popover { border-color: var(--aq-popover); }
+      .ring-popover { --tw-ring-color: var(--aq-popover); }
+      .bg-popover-foreground { background-color: var(--aq-popover-foreground); }
+      .text-popover-foreground { color: var(--aq-popover-foreground); }
+      .border-popover-foreground { border-color: var(--aq-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--aq-popover-foreground); }
+      .bg-primary { background-color: var(--aq-primary); }
+      .text-primary { color: var(--aq-primary); }
+      .border-primary { border-color: var(--aq-primary); }
+      .ring-primary { --tw-ring-color: var(--aq-primary); }
+      .bg-primary-foreground { background-color: var(--aq-primary-foreground); }
+      .text-primary-foreground { color: var(--aq-primary-foreground); }
+      .border-primary-foreground { border-color: var(--aq-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--aq-primary-foreground); }
+      .bg-muted { background-color: var(--aq-muted); }
+      .text-muted { color: var(--aq-muted); }
+      .border-muted { border-color: var(--aq-muted); }
+      .ring-muted { --tw-ring-color: var(--aq-muted); }
+      .bg-muted-foreground { background-color: var(--aq-muted-foreground); }
+      .text-muted-foreground { color: var(--aq-muted-foreground); }
+      .border-muted-foreground { border-color: var(--aq-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--aq-muted-foreground); }
+      .bg-border { background-color: var(--aq-border); }
+      .text-border { color: var(--aq-border); }
+      .border-border { border-color: var(--aq-border); }
+      .ring-border { --tw-ring-color: var(--aq-border); }
+      .bg-input { background-color: var(--aq-input); }
+      .text-input { color: var(--aq-input); }
+      .border-input { border-color: var(--aq-input); }
+      .ring-input { --tw-ring-color: var(--aq-input); }
+      .bg-ring { background-color: var(--aq-ring); }
+      .text-ring { color: var(--aq-ring); }
+      .border-ring { border-color: var(--aq-ring); }
+      .ring-ring { --tw-ring-color: var(--aq-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main class="bg-background min-h-screen py-16 px-4">
+      <div class="max-w-[640px] mx-auto flex flex-col gap-12">
+
+        <!-- Step Label -->
+        <div class="text-center">
+          <span class="text-xs font-medium tracking-widest text-muted-foreground uppercase">Step 1</span>
+        </div>
+
+        <!-- Step 1: Welcome -->
+        <div class="bg-card rounded-lg border border-border shadow-[0_4px_24px_rgba(0,0,0,0.08)] overflow-hidden">
+          <!-- Title Bar -->
+          <div class="flex items-center justify-between h-10 px-3 border-b border-border bg-[#161C2E]">
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+                <span class="text-[8px] font-bold text-primary-foreground leading-none">AQ</span>
+              </div>
+              <span class="text-xs text-foreground">AQ录制 安装向导</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-border/60 transition-colors">
+                <svg width="10" height="1" viewBox="0 0 10 1" fill="none"><line x1="0" y1="0.5" x2="10" y2="0.5" stroke="currentColor" stroke-width="1"/></svg>
+              </button>
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-border/60 transition-colors">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="9" height="9" rx="1"/></svg>
+              </button>
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-state-error/60 transition-colors">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="0" y1="0" x2="10" y2="10"/><line x1="10" y1="0" x2="0" y2="10"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Content -->
+          <div class="flex gap-6 p-8">
+            <div class="flex-shrink-0 w-24 h-24 rounded-xl bg-primary/10 flex items-center justify-center">
+              <i data-icon="monitor" class="w-12 h-12 text-primary"></i>
+            </div>
+            <div class="flex flex-col gap-3 pt-2">
+              <h2 class="text-lg font-semibold text-foreground">欢迎安装 AQ录制</h2>
+              <p class="text-sm text-muted-foreground leading-relaxed">本向导将引导您完成安装过程。</p>
+              <p class="text-sm text-muted-foreground leading-relaxed">建议关闭其他应用程序后再继续安装。</p>
+              <label class="flex items-start gap-2 mt-2 cursor-pointer select-none">
+                <input type="checkbox" checked class="mt-0.5 w-4 h-4 rounded border-border accent-primary">
+                <span class="text-xs text-muted-foreground leading-relaxed">我已阅读并同意 <a href="#" class="text-primary hover:underline">用户协议</a> 和 <a href="#" class="text-primary hover:underline">隐私政策</a></span>
+              </label>
+            </div>
+          </div>
+          <!-- Bottom Bar -->
+          <div class="flex items-center justify-end h-12 px-4 border-t border-border">
+            <button class="px-5 py-1.5 rounded bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors">下一步 &gt;</button>
+          </div>
+        </div>
+
+        <!-- Step Label -->
+        <div class="text-center">
+          <span class="text-xs font-medium tracking-widest text-muted-foreground uppercase">Step 2</span>
+        </div>
+
+        <!-- Step 2: Install Path -->
+        <div class="bg-card rounded-lg border border-border shadow-[0_4px_24px_rgba(0,0,0,0.08)] overflow-hidden">
+          <!-- Title Bar -->
+          <div class="flex items-center justify-between h-10 px-3 border-b border-border bg-[#161C2E]">
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+                <span class="text-[8px] font-bold text-primary-foreground leading-none">AQ</span>
+              </div>
+              <span class="text-xs text-foreground">AQ录制 安装向导</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-border/60 transition-colors">
+                <svg width="10" height="1" viewBox="0 0 10 1" fill="none"><line x1="0" y1="0.5" x2="10" y2="0.5" stroke="currentColor" stroke-width="1"/></svg>
+              </button>
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-border/60 transition-colors">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="9" height="9" rx="1"/></svg>
+              </button>
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-state-error/60 transition-colors">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="0" y1="0" x2="10" y2="10"/><line x1="10" y1="0" x2="0" y2="10"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Content -->
+          <div class="flex flex-col gap-5 p-8">
+            <div>
+              <h2 class="text-lg font-semibold text-foreground">选择安装位置</h2>
+              <p class="text-sm text-muted-foreground mt-1">选择AQ录制的安装文件夹</p>
+            </div>
+            <div class="flex gap-2">
+              <div class="flex-1 h-9 px-3 rounded border border-border bg-input text-sm text-foreground flex items-center font-mono text-xs">C:\Program Files\AQRecord\</div>
+              <button class="h-9 px-3 rounded border border-border bg-popover text-sm text-muted-foreground hover:text-foreground hover:bg-border/40 transition-colors flex-shrink-0">浏览...</button>
+            </div>
+            <div class="flex items-center gap-4 text-xs text-muted-foreground">
+              <span>需要空间: 256 MB</span>
+              <span class="text-border">|</span>
+              <span>可用空间: 120.5 GB</span>
+            </div>
+          </div>
+          <!-- Bottom Bar -->
+          <div class="flex items-center justify-between h-12 px-4 border-t border-border">
+            <button class="px-5 py-1.5 rounded border border-border bg-card text-sm text-muted-foreground hover:text-foreground hover:bg-border/40 transition-colors">&lt; 上一步</button>
+            <button class="px-5 py-1.5 rounded bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors">下一步 &gt;</button>
+          </div>
+        </div>
+
+        <!-- Step Label -->
+        <div class="text-center">
+          <span class="text-xs font-medium tracking-widest text-muted-foreground uppercase">Step 3</span>
+        </div>
+
+        <!-- Step 3: Installing -->
+        <div class="bg-card rounded-lg border border-border shadow-[0_4px_24px_rgba(0,0,0,0.08)] overflow-hidden">
+          <!-- Title Bar -->
+          <div class="flex items-center justify-between h-10 px-3 border-b border-border bg-[#161C2E]">
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+                <span class="text-[8px] font-bold text-primary-foreground leading-none">AQ</span>
+              </div>
+              <span class="text-xs text-foreground">AQ录制 安装向导</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-border/60 transition-colors">
+                <svg width="10" height="1" viewBox="0 0 10 1" fill="none"><line x1="0" y1="0.5" x2="10" y2="0.5" stroke="currentColor" stroke-width="1"/></svg>
+              </button>
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-border/60 transition-colors">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="9" height="9" rx="1"/></svg>
+              </button>
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-state-error/60 transition-colors">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="0" y1="0" x2="10" y2="10"/><line x1="10" y1="0" x2="0" y2="10"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Content -->
+          <div class="flex flex-col gap-5 p-8">
+            <div>
+              <h2 class="text-lg font-semibold text-foreground">正在安装</h2>
+              <p class="text-sm text-muted-foreground mt-1">请稍候，正在安装AQ录制...</p>
+            </div>
+            <!-- Progress Bar -->
+            <div>
+              <div class="w-full h-2.5 rounded-full bg-border overflow-hidden">
+                <div class="h-full rounded-full bg-primary" style="width: 80%"></div>
+              </div>
+              <p class="text-xs text-muted-foreground mt-2">正在复制文件... 80%</p>
+            </div>
+            <!-- Log Area -->
+            <div class="bg-background rounded border border-border p-4 font-mono text-xs text-muted-foreground leading-loose">
+              <p>正在解压文件...</p>
+              <p>正在安装核心组件...</p>
+              <p>正在注册文件关联...</p>
+              <p class="text-primary">正在创建桌面快捷方式...</p>
+            </div>
+          </div>
+          <!-- Bottom Bar -->
+          <div class="flex items-center justify-between h-12 px-4 border-t border-border">
+            <button class="px-5 py-1.5 rounded border border-border bg-card text-sm text-muted/40 cursor-not-allowed">&lt; 上一步</button>
+            <button class="px-5 py-1.5 rounded bg-primary/50 text-primary-foreground text-sm font-medium cursor-wait flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2a10 10 0 0 1 10 10" opacity="0.3"/><path d="M12 2a10 10 0 0 1 10 10" stroke-dasharray="30 70"/></svg>
+              安装中...
+            </button>
+          </div>
+        </div>
+
+        <!-- Step Label -->
+        <div class="text-center">
+          <span class="text-xs font-medium tracking-widest text-muted-foreground uppercase">Step 4</span>
+        </div>
+
+        <!-- Step 4: Complete -->
+        <div class="bg-card rounded-lg border border-border shadow-[0_4px_24px_rgba(0,0,0,0.08)] overflow-hidden">
+          <!-- Title Bar -->
+          <div class="flex items-center justify-between h-10 px-3 border-b border-border bg-[#161C2E]">
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+                <span class="text-[8px] font-bold text-primary-foreground leading-none">AQ</span>
+              </div>
+              <span class="text-xs text-foreground">AQ录制 安装向导</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-border/60 transition-colors">
+                <svg width="10" height="1" viewBox="0 0 10 1" fill="none"><line x1="0" y1="0.5" x2="10" y2="0.5" stroke="currentColor" stroke-width="1"/></svg>
+              </button>
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-border/60 transition-colors">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="9" height="9" rx="1"/></svg>
+              </button>
+              <button class="w-6 h-6 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-state-error/60 transition-colors">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="0" y1="0" x2="10" y2="10"/><line x1="10" y1="0" x2="0" y2="10"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Content -->
+          <div class="flex flex-col items-center gap-5 p-8">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: rgba(16,185,129,0.12)">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="text-center">
+              <h2 class="text-lg font-semibold text-foreground">安装完成</h2>
+              <p class="text-sm text-muted-foreground mt-1">AQ录制已成功安装到您的计算机。</p>
+            </div>
+            <div class="flex flex-col gap-3 w-full max-w-xs">
+              <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                <input type="checkbox" checked class="w-4 h-4 rounded border-border accent-[#10B981]">
+                <span class="text-sm text-foreground">运行 AQ录制</span>
+              </label>
+              <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                <input type="checkbox" class="w-4 h-4 rounded border-border accent-[#10B981]">
+                <span class="text-sm text-foreground">创建桌面快捷方式</span>
+              </label>
+            </div>
+          </div>
+          <!-- Bottom Bar -->
+          <div class="flex items-center justify-between h-12 px-4 border-t border-border">
+            <button class="px-5 py-1.5 rounded border border-border bg-card text-sm text-muted-foreground hover:text-foreground hover:bg-border/40 transition-colors">&lt; 上一步</button>
+            <button class="px-5 py-1.5 rounded bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors">完成</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

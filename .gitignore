@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Logs
+*.log
+logs/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Uploads and data (sensitive)
+uploads/
+data/
+
+# Bore tunnel
+bore.exe
+bore.log
+bore_err.log
+bore_port.tmp
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# Backup files
+*.backup
+
+# Download files (large binaries)
+downloads/*.exe
+downloads/*.zip
+downloads/*.msi

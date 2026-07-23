@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQ录制 — 管理员登录</title>
+    <style>
+        :root {
+            --bg-dark: #0B0A0B;
+            --bg-card: #1F1E1F;
+            --bg-input: #0B0A0B;
+            --text-primary: #E1E0E1;
+            --text-secondary: #C8C7C8;
+            --text-muted: #7A797A;
+            --primary: #2A82DA;
+            --primary-dark: #1F6CB8;
+            --danger: #FF5F57;
+            --border: #1F1E1F;
+            --border-light: #3A393A;
+            --radius: 5px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .login-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .login-logo {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .login-logo h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+        .login-logo p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42,130,218,0.15);
+        }
+        .login-error {
+            background: rgba(255,95,87,0.1);
+            border: 1px solid rgba(255,95,87,0.3);
+            color: var(--danger);
+            padding: 10px 16px;
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .login-error.show { display: block; }
+        .btn {
+            width: 100%;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            background: var(--primary);
+            color: #fff;
+            transition: all 0.15s;
+        }
+        .btn:hover { background: var(--primary-dark); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 24px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--primary); }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="login-logo">
+            <svg viewBox="0 0 32 32" width="40" height="40">
+                <circle cx="16" cy="16" r="14" fill="none" stroke="#2A82DA" stroke-width="2.5"/>
+                <circle cx="16" cy="16" r="7" fill="#2A82DA"/>
+            </svg>
+            <h1>AQ录制 管理后台</h1>
+            <p>仅限管理员登录</p>
+        </div>
+        <div class="login-error" id="loginError"></div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" placeholder="请输入管理员用户名" autocomplete="username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" placeholder="请输入密码" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="btn" id="loginBtn">登 录</button>
+        </form>
+        <a href="/" class="back-link">返回官网首页</a>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+            const form = document.getElementById('loginForm');
+            const errEl = document.getElementById('loginError');
+            const btn = document.getElementById('loginBtn');
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                btn.disabled = true;
+                btn.textContent = '登录中...';
+                errEl.classList.remove('show');
+
+                try {
+                    const res = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, password })
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        // 保存 token 到 localStorage（admin.html 前端 API 调用需要）
+                        localStorage.setItem('aq_admin_token', data.token);
+                        window.location.href = '/admin.html';
+                    } else {
+                        errEl.textContent = data.message || '登录失败';
+                        errEl.classList.add('show');
+                    }
+                } catch {
+                    errEl.textContent = '网络错误，请检查服务器连接';
+                    errEl.classList.add('show');
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = '登 录';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

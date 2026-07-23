@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preflight</title>
+    <style id="theme-vars">
+/* AQ Record — Brand Design Tokens */
+/* Primary: Electric Blue, Tech Minimal Style */
+
+:root {
+  --aq-background: #0B0F1A;
+  --aq-foreground: #E8ECF4;
+  --aq-card: #131827;
+  --aq-card-foreground: #E8ECF4;
+  --aq-popover: #1A2035;
+  --aq-popover-foreground: #E8ECF4;
+  --aq-primary: #3B82F6;
+  --aq-primary-foreground: #FFFFFF;
+  --aq-muted: #64748B;
+  --aq-muted-foreground: #94A3B8;
+  --aq-border: #1E293B;
+  --aq-input: #1E293B;
+  --aq-ring: #3B82F6;
+  --aq-radius-sm: 6px;
+  --aq-radius-md: 10px;
+  --aq-radius-lg: 16px;
+  --aq-state-success: #10B981;
+  --aq-state-warning: #F59E0B;
+  --aq-state-error: #EF4444;
+  --aq-state-info: #3B82F6;
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--aq-background);
+    --color-foreground: var(--aq-foreground);
+    --color-card: var(--aq-card);
+    --color-card-foreground: var(--aq-card-foreground);
+    --color-popover: var(--aq-popover);
+    --color-popover-foreground: var(--aq-popover-foreground);
+    --color-primary: var(--aq-primary);
+    --color-primary-foreground: var(--aq-primary-foreground);
+    --color-muted: var(--aq-muted);
+    --color-muted-foreground: var(--aq-muted-foreground);
+    --color-border: var(--aq-border);
+    --color-input: var(--aq-input);
+    --color-ring: var(--aq-ring);
+    --radius-sm: var(--aq-radius-sm);
+    --radius-md: var(--aq-radius-md);
+    --radius-lg: var(--aq-radius-lg);
+  }
+  @layer base {
+    body { background: var(--aq-background); color: var(--aq-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--aq-background); }
+      .text-background { color: var(--aq-background); }
+      .border-background { border-color: var(--aq-background); }
+      .ring-background { --tw-ring-color: var(--aq-background); }
+      .bg-foreground { background-color: var(--aq-foreground); }
+      .text-foreground { color: var(--aq-foreground); }
+      .border-foreground { border-color: var(--aq-foreground); }
+      .ring-foreground { --tw-ring-color: var(--aq-foreground); }
+      .bg-card { background-color: var(--aq-card); }
+      .text-card { color: var(--aq-card); }
+      .border-card { border-color: var(--aq-card); }
+      .ring-card { --tw-ring-color: var(--aq-card); }
+      .bg-card-foreground { background-color: var(--aq-card-foreground); }
+      .text-card-foreground { color: var(--aq-card-foreground); }
+      .border-card-foreground { border-color: var(--aq-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--aq-card-foreground); }
+      .bg-popover { background-color: var(--aq-popover); }
+      .text-popover { color: var(--aq-popover); }
+      .border-popover { border-color: var(--aq-popover); }
+      .ring-popover { --tw-ring-color: var(--aq-popover); }
+      .bg-popover-foreground { background-color: var(--aq-popover-foreground); }
+      .text-popover-foreground { color: var(--aq-popover-foreground); }
+      .border-popover-foreground { border-color: var(--aq-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--aq-popover-foreground); }
+      .bg-primary { background-color: var(--aq-primary); }
+      .text-primary { color: var(--aq-primary); }
+      .border-primary { border-color: var(--aq-primary); }
+      .ring-primary { --tw-ring-color: var(--aq-primary); }
+      .bg-primary-foreground { background-color: var(--aq-primary-foreground); }
+      .text-primary-foreground { color: var(--aq-primary-foreground); }
+      .border-primary-foreground { border-color: var(--aq-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--aq-primary-foreground); }
+      .bg-muted { background-color: var(--aq-muted); }
+      .text-muted { color: var(--aq-muted); }
+      .border-muted { border-color: var(--aq-muted); }
+      .ring-muted { --tw-ring-color: var(--aq-muted); }
+      .bg-muted-foreground { background-color: var(--aq-muted-foreground); }
+      .text-muted-foreground { color: var(--aq-muted-foreground); }
+      .border-muted-foreground { border-color: var(--aq-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--aq-muted-foreground); }
+      .bg-border { background-color: var(--aq-border); }
+      .text-border { color: var(--aq-border); }
+      .border-border { border-color: var(--aq-border); }
+      .ring-border { --tw-ring-color: var(--aq-border); }
+      .bg-input { background-color: var(--aq-input); }
+      .text-input { color: var(--aq-input); }
+      .border-input { border-color: var(--aq-input); }
+      .ring-input { --tw-ring-color: var(--aq-input); }
+      .bg-ring { background-color: var(--aq-ring); }
+      .text-ring { color: var(--aq-ring); }
+      .border-ring { border-color: var(--aq-ring); }
+      .ring-ring { --tw-ring-color: var(--aq-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
