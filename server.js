@@ -13,9 +13,18 @@ const fs = require('fs');
 const compression = require('compression');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const JWT_SECRET = 'aq-recorder-jwt-secret-2026';
 const TOKEN_EXPIRY = '24h';
+
+/* 全局异常捕获 —— 防止未处理异常导致进程崩溃 */
+process.on('uncaughtException', function (err) {
+    console.error('[CRASH] 未捕获异常:', err.message);
+    console.error(err.stack);
+});
+process.on('unhandledRejection', function (reason, promise) {
+    console.error('[CRASH] 未处理的Promise拒绝:', reason);
+});
 
 /* 安全常量 */
 const MAX_LOGIN_ATTEMPTS = 5;        // 最大失败次数
@@ -59,7 +68,7 @@ setInterval(function () {
 function getClientIP(req) {
     const xff = req.headers['x-forwarded-for'];
     if (xff && typeof xff === 'string') {
-        // 可能是一个逗号分隔的列表，取第一个为客户端真实 IP
+        // X-Forwarded-For 可能包含多个IP (client, proxy1, proxy2)，取第一个为客户端真实 IP
         return xff.split(',')[0].trim();
     }
     // 兼容不同 Node 版本的属性
@@ -406,8 +415,7 @@ app.listen(PORT, '0.0.0.0', function () {
     console.log('========================================');
     console.log('  AQ录制软件官网文件服务器已启动');
     console.log('  地址: http://localhost:' + PORT);
-    console.log('  公网监听: http://0.0.0.0:' + PORT);
-    console.log('  官方域名: http://aq.luzhi.com');
+    console.log('  QQ群: 632984162');
     console.log('  管理后台: http://localhost:' + PORT + '/admin.html');
     console.log('  官网首页: http://localhost:' + PORT);
     console.log('========================================');

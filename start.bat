@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul 2>&1
-title AQ Website Server v1.7.18
+title AQ Website Server v1.9.0
 echo.
 echo Starting AQ Website Server...
 echo.
