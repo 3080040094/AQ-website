@@ -43,7 +43,13 @@ const loginFailures = {}; // { ip: { count, firstAttempt, lockedUntil } }
 setInterval(function () {
     const now = Date.now();
     Object.keys(loginFailures).forEach(function (ip) {
+        // 清理已过期的锁定条目
         if (loginFailures[ip].lockedUntil && loginFailures[ip].lockedUntil < now) {
+            delete loginFailures[ip];
+            return;
+        }
+        // 如果记录存在但很久没有尝试，清理老旧记录以节省内存（例如 24 小时）
+        if (loginFailures[ip].firstAttempt && (now - loginFailures[ip].firstAttempt) > 24 * 60 * 60 * 1000) {
             delete loginFailures[ip];
         }
     });
@@ -51,7 +57,13 @@ setInterval(function () {
 
 /* 获取客户端真实 IP */
 function getClientIP(req) {
-    return req.headers['x-forwarded-for'] || req.connection.remoteAddress || '127.0.0.1';
+    const xff = req.headers['x-forwarded-for'];
+    if (xff && typeof xff === 'string') {
+        // 可能是一个逗号分隔的列表，取第一个为客户端真实 IP
+        return xff.split(',')[0].trim();
+    }
+    // 兼容不同 Node 版本的属性
+    return (req.connection && req.connection.remoteAddress) || (req.socket && req.socket.remoteAddress) || '127.0.0.1';
 }
 
 // ==================== 中间件 ====================
@@ -91,8 +103,8 @@ app.get('/admin.html', function (req, res) {
     try {
         jwt.verify(token, JWT_SECRET);
         res.sendFile(path.join(__dirname, 'admin.html'));
-    } catch {
-        res.redirect('/login');
+    } catch (err) {
+        return res.redirect('/login');
     }
 });
 
@@ -137,7 +149,8 @@ function saveUsers(users) {
 function loadFilesMeta() {
     try {
         const raw = fs.readFileSync(FILES_META_FILE, 'utf-8');
-        return JSON.parse(raw);
+        const data = JSON.parse(raw);
+        return Array.isArray(data) ? data : [];
     } catch {
         return [];
     }
@@ -163,11 +176,20 @@ initAdmin();
 // ==================== JWT 认证中间件 ====================
 
 function authMiddleware(req, res, next) {
+    // 优先使用 Authorization: Bearer <token>
     const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    let token = null;
+
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+        token = authHeader.split(' ')[1];
+    } else {
+        // 回退到 Cookie（用于浏览器直接访问 admin 页面等场景）
+        token = parseCookie(req, 'aq_token');
+    }
+
+    if (!token) {
         return res.status(401).json({ success: false, message: '未提供认证令牌' });
     }
-    const token = authHeader.split(' ')[1];
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
         req.user = decoded;
@@ -184,9 +206,10 @@ const storage = multer.diskStorage({
         cb(null, UPLOADS_DIR);
     },
     filename: function (req, file, cb) {
-        // 保留原始文件名（中文支持）
+        // 保留原始文件名（中文支持），并添加唯一前缀避免覆盖
         const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
-        cb(null, originalName);
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        cb(null, uniqueSuffix + '-' + originalName);
     }
 });
 
@@ -197,7 +220,8 @@ const fileFilter = function (req, file, cb) {
     if (ext === '.exe') {
         cb(null, true);
     } else {
-        cb(new Error('仅支持 .exe 文件上传'), false);
+        // 使用非错误方式拒绝文件，multer 会返回 400，如果需要可改为 cb(new Error(...))
+        cb(new Error('仅支持 .exe 文件上传'));
     }
 };
 
